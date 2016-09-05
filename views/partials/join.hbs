@@ -1,0 +1,55 @@
+
+<div class="row">
+  <div class="join-form">
+      <div class="panel panel-info ">
+          <div class="panel-heading">
+              <h3 class="panel-title">Inserisci i dati per unirti alla partita:</h3>
+          </div>
+          <form role="form" method="post" action="/match/matchJoin">
+              <div class="panel-body">
+                  <div class="form-group">
+                      <input type="hidden" class="form-control" name="id" value="{{ game._id}}">
+                  </div>
+                  <div class="form-group">
+                    <label>Ruolo: </label>
+                    <select  class="form-control" name="rule">
+                        {{ html rules }}
+                    </select>
+                  </div>
+              </div>
+              <div class="panel-footer">
+                  <p><button type="submit" class="btn btn-default center-block">Partecipa</button></p>
+              </div>
+          </form>
+      </div>
+  </div>
+  <div id="game-details" class="col-md-4 col-md-offset-1" data-id="{{game._id}}" data-user="{{user.alias}}"
+  data-emit="{{emit}}" data-status="{{game.status}}" data-ready="{{ready}}" data-starter="{{game.starter}}"
+  data-rule="{{rule}}" data-team="{{my_color}}" data-indizio="" data-numero="" data-scoreR="8" data-scoreB="8">
+      <div><span style="color:#e0676b">Team Rosso</span>: <span id="teamr">{{html team_r}}</span></div>
+      <div><span style="color:#67a7e0">Team Blu</span>: <span id="teamb">{{html team_b}}</span></div>
+      <div><p> </p></div>
+      <div><p> </p></div>
+      <div>
+        <div class="game-board text-center">
+        <table>
+          {{#each game.board}}
+            {{ riga_init col }}
+            <td>
+              <div class="border-{{ color }} row-{{ row }} col-{{ col }}" data-row="{{ row }}" data-col="{{ col }}">
+                <div class="game-row color-{{ colore owner_team ../rule }}">
+                  <div class="game-card" data-row="{{ row }}" data-col="{{ col }}" data-owner="{{ owner_team }}"  data-color="{{ color }}">
+                      {{word}}
+                  </div>
+                </div>
+              </div>
+            </td>
+            {{ riga_end col }}
+          {{/each}}
+        </table>
+        </div>
+      </div>
+
+  </div>
+
+</div>

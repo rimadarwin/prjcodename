@@ -1,0 +1,6 @@
+{
+    "codenames": {
+        "dbloc": "mongodb://localhost/cn1",
+        "dbrem": "mongodb://admin:admin@ds019826.mlab.com:19826/codename"
+    }
+}

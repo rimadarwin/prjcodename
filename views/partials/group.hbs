@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Group summary</h3>
+        </div>
+        <div class="panel-body">
+                {{#if group}}
+                <p>ID: {{ group._id }}</p>
+                <p>Foto: {{ group.photo }}</p>
+                <p>Nome: {{ group.name }}</p>
+                <p>Creato da: {{ group.alias_creator }}</p>
+                <p>Profili: {{ group.tot_prof }}</p>
+                <p>Utenti: {{ group.tot_user }}</p>
+                <p>Partite create: {{ group.tot_match }}</p>
+                {{/if}}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <table cellspacing="0" width="100%">
+            <tr>
+            <td><div align="left"><h3 class="panel-title">Profile summary</h3></div></td>
+            <td><div align="right"><a href="/profile/profileNew/{{ group._id }}" title="Create a new profile" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> New Profile </a></div></td>
+            </tr>
+            </table>
+        </div>
+        <div class="panel-body">
+                {{#if group.profiles}}
+                <table id="example" class="table table-striped header-fixed" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Creator</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each group.profiles}}
+                <tr>
+                <td>{{ photo }}</td>
+                <td>{{ name }}</td>
+                <td>{{ alias_creator }}</td>
+                <td><a href="/profile/{{ _id }}/{{ ../group._id }}" class="btn btn-info" role="button"> Enter </a></td>
+                </tr>
+                {{/each}}
+                    </tbody>
+                </table>
+                {{else}}
+                <p>Il gruppo non ha ancora nessun profilo. Crea tu il primo profilo!</p>
+                {{/if}}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <table cellspacing="0" width="100%">
+            <tr>
+            <td><div align="left"><h3 class="panel-title">Matches to play</h3></div></td>
+            <td>{{#if group.profiles}}<div align="right"><a href="/match/matchNew/{{ group._id }}" title="Create a new match" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> New Match </a></div>{{/if}}</td>
+            </tr>
+            </table>
+        </div>
+        <div class="panel-body">
+            {{#if (match4Group user.matches group._id)}}
+                <table id="example" class="table table-striped header-fixed" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Profile</th>
+                        <th>Joined</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each user.matches}}
+                {{#if (compare ref_group ../group._id)}}
+                <tr>
+                <td>{{ name }}</td>
+                <td>{{ profile }}</td>
+                <td>{{ num_users }}</td>
+                <td>{{ buttonTable ../../user._id id_creator ref_match status }}</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+                    </tbody>
+                </table>
+                {{else}}
+                    {{#if group.profiles}}
+                        <p>Il gruppo non ha nessuna partita in stato attivo. Crea tu la prossima sfida!</p>
+                    {{else}}
+                        <p>Per creare sfide aggiungi almeno un profilo!</p>
+                    {{/if}}
+                {{/if}}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Matches played</h3>
+        </div>
+        <div class="panel-body">
+            <blockquote>
+                <p>{{ quote.content }}</p>
+                <footer>{{ quote.author }}</footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6 trg">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Top rated live game on Chess Hub</h3>
+            </div>
+            <div class="panel-body">
+                <div id="trg"></div>
+                <div class="caption">
+                    <h5 class="text-center"><i class="fa fa-circle-o"></i> G. Kasparov <em>vs</em> <i class="fa fa-circle"></i> V. Anand</h5>
+                    <h5 class="text-center">
+                        <a href="/tv"><i class="fa fa-eye"></i> View game on Chess Hub Tv</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 pod">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Puzzle of the day</h3>
+            </div>
+            <div class="panel-body">
+                <div id="pod" data-fen="{{ puzzle.content }}"></div>
+                <div class="caption">
+                    <h5 class="text-center">{{ puzzle.comment }}</h5>
+                    <h5 class="text-center">
+                        <a id="podSolution" href="javascript:void(0)" data-toggle="popover"
+                           data-placement="bottom" data-content="{{ puzzle.solution }}"><i class="fa fa-question-circle"></i> Show solution</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="successMessage" hidden="hidden">{{ successMessage }}</div>
+    <div id="errorMessage" hidden="hidden">{{ errorMessage }}</div>
+    <div id="id_group" hidden="hidden">{{ group._id }}</div>
+
+</div>

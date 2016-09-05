@@ -1,0 +1,293 @@
+/* Space out content a bit */
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer,
+.content {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+    border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+    padding-bottom: 19px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+}
+
+.content {
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+/* Custom page footer */
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+    text-align: center;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+}
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+    padding: 14px 24px;
+    font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+    margin: 40px 0;
+}
+.marketing p + h4 {
+    margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+    }
+}
+
+.trg {
+    padding-right: 15px;
+    padding-left: 0px;
+}
+
+.pod {
+    padding-right: 0px;
+    padding-left: 15px;
+}
+
+.side-img{
+    height: 32px;
+    width: 32px;
+}
+
+.table td, th {
+    text-align: center;
+}
+
+.header-fixed {
+    width: 100%
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.header-fixed > tbody {
+    overflow-y: auto;
+    height: 150px;
+}
+
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th {
+    width: 25%;
+    float: left;
+    border-bottom-width: 0;
+}
+
+.header-fixed thead {
+  width: 98%;
+}
+
+.game-row {
+	height:40px;
+  width: 100px;
+	padding:7px;
+	border: 1px ridge #fff;
+	font-size: 14px;
+  /*position: absolute;*/
+}
+.border- {
+  /*position: absolute;*/
+	border: 3px ridge #fff;
+
+  height:46px;
+  width: 106px;
+}
+
+.border-0 {
+	border: 3px ridge #e0676b;
+}
+
+.border-1 {
+	border: 3px ridge #67a7e0;
+}
+
+.game-row:hover {
+	color:#fffff4;
+	cursor:pointer;
+}
+/*
+.join-form {
+  position: relative;
+}
+
+.game-board {
+  position: relative;
+}
+
+.game-details {
+  position: relative;
+}
+
+.row-0 {
+  top: 40px;
+}
+.row-1 {
+  top: 90px;
+}
+.row-2 {
+  top: 140px;
+}
+.row-3 {
+  top: 190px;
+}
+.row-4 {
+  top: 240px;
+}
+
+.col-0 {
+  left: 20px;
+}
+.col-1 {
+  left: 130px;
+}
+.col-2 {
+  left: 240px;
+}
+.col-3 {
+  left: 350px;
+}
+.col-4 {
+  left: 460px;
+}
+*/
+.color-2 {
+	background-color: #e0dd67; /* giallo */
+}
+.color-1 {
+	background-color: #67a7e0; /* blu */
+}
+.color-0 {
+	background-color: #e0676b; /* rosso */
+}
+.color-3 {
+	background-color: #000016; /* nero */
+}
+
+.color-4 {
+	background-color: #fff; /* bianco */
+}
+
+
+a:focus {
+	outline: none;
+}
+#panel {
+  /* position: relative; */
+  width: 300px;
+	background: #6d6f6e;
+	height: 200px;
+	display: none;
+	color:#fff;
+	padding-left:20px;
+	}
+.slide {
+	margin: 0;
+	padding: 0;
+	border-top: solid 4px #000;
+
+
+}
+.btn-slide {
+	background: #000;
+	text-align: center;
+	width: 144px;
+	height: 31px;
+	padding: 10px 10px 0 0;
+	margin: 0 auto;
+	display: block;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	color: #fff;
+	text-decoration: none;
+}
+.active {
+	background-position: right 12px;
+}
+
+#buttonStart { color:#FFF; background: #2D9F0B; border: none; padding: 2px;  width: 150px; display:none; }
+/* chat properties */
+.module1 { background: #fff; width: 320px; position: fixed;  left: 10px; bottom: 10px; border: 3px ridge #e0676b; text-align:right;}
+.module1 img { height: 14px; }
+.module2 { background: #fff; width: 320px; position: fixed;  right: 10px; bottom: 10px; border: 3px ridge #e0676b; text-align:left;}
+.module2 img { height: 14px; }
+.body1 { position: relative; height: 290px; display: none; margin-left: .5%;}
+.body1 form { background: #000; padding: 3px; top: 200px; width: 99%; }
+.body1 form input { border: 0; padding: 2px; width: 85%; margin-right: .5%; }
+.body1 form #button { color:#FFF; background: #2D9F0B; border: none; padding: 2px;  width: 14%; }
+.body2 { position: relative; height: 290px; display: none;}
+.body2 form { background: #000; padding: 3px; top: 200px; width: 99%; }
+.body2 form #indizio { border: 0; padding: 2px; width: 69%; margin-right: 1%; }
+.body2 form #numero { border: 0; padding: 2px; width: 15%; margin-right: .5%; }
+.body2 form #buttonIndizio { color:#FFF; background: #2D9F0B; border: none; padding: 2px;  width: 14%; }
+.body2 form #buttonFatto { color:#FFF; background: #2D9F0B; border: none; padding: 2px;  width: 18%; }
+#messages1 { background: #fff; list-style-type: none; margin: 0; padding: 0; height: 260px; overflow:auto; -webkit-overflow-scrolling: touch;}
+#messages1 li { background: #fff; padding: 5px 10px; }
+#messages1 li:nth-child(odd) { background: #eee; }
+#notifyUser1 { position: relative; top: 42px; width: 100%; }
+#messages2 { background: #fff; list-style-type: none; margin: 0; padding: 0; height: 260px; overflow:auto; -webkit-overflow-scrolling: touch;}
+#messages2 li { padding: 5px 10px; }
+#messages2 li:nth-child(odd) { background: #eee; }
+#notifyUser2 { position: relative; top: 42px; width: 100%; }

@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-info ">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-search"></i> Search a group</h3>
+            </div>
+            <form id="groupSearchForm" role="form">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" autofocus required>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <p><button id="searchGroupFormSubmit" type="button" class="btn btn-default center-block">Submit</button></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="searchResult" hidden="hidden">
+        <table id="foundGroupsTable" class="table table-bordered table-striped table-condensed table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Users</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6">
+                    <div class="text-center">Total groups = <span id="totalFoundGroups" class="badge badge-inverse">0</span></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div id="errorMessage" hidden="hidden">{{ errorMessage }}</div>
+</div>

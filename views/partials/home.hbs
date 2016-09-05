@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <table cellspacing="0" width="100%">
+            <tr>
+            <td><div align="left"><h3 class="panel-title">Partite disponibili</h3></div></td>
+            <td><div align="right"><a href="/match/matchNew" title="Crea una nuova partita" class="btn btn-success" role="button"><i class="fa fa-group"></i> Crea Partita </a></div></td>
+            </tr>
+            </table>
+        </div>
+        <div class="panel-body">
+                {{#if games}}
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Users</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each games}}
+                <tr>
+                <td>{{ name }}</td>
+                <td>{{ num_users }}</td>
+                <td>{{ status }}</td>
+                <td><a href="/match/{{ _id }}" class="btn btn-info" role="button"> Entra </a></td>
+                </tr>
+                {{/each}}
+                    </tbody>
+                </table>
+                {{else}}
+                <p>Non ci sono partite disponibili!</p>
+                {{/if}}
+        </div>
+    </div>
+</div>
+
+    <div id="successMessage" hidden="hidden">{{ successMessage }}</div>
+    <div id="errorMessage" hidden="hidden">{{ errorMessage }}</div>
+
+</div>

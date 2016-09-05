@@ -1,0 +1,78 @@
+
+<div class="row">
+    <div id="game-details" class="col-md-4 col-md-offset-1" data-id="{{game._id}}" data-user="{{user.alias}}"
+    data-emit="{{emit}}" data-status="{{game.status}}" data-ready="{{ready}}" data-starter="{{game.starter}}" data-creator="{{game.alias_creator}}"
+    data-rule="{{rule}}" data-team="{{my_color}}" data-indizio="" data-numero="" data-scoreR="8" data-scoreB="8" data-sid="">
+        <div><span style="color:#e0676b">Team Rosso</span>: <span id="teamr">{{html team_r}}</span></div>
+        <div><span style="color:#67a7e0">Team Blu</span>: <span id="teamb">{{html team_b}}</span></div>
+        <div><p> </p></div>
+        <div class="score"><p>Punteggio: <span id="scorer" style="color:#e0676b"></span> - <span id="scoreb" style="color:#67a7e0"></span></p></div>
+        <div><p><input type="button" id="buttonStart" value="Start"/></p></div>
+        <div><p> </p></div>
+        <div>
+		    	<div class="game-board text-center">
+          <table>
+            {{#each game.board}}
+              {{ riga_init col }}
+              <td>
+                <div class="border-{{ color }} row-{{ row }}col-{{ col }}" data-row="{{ row }}" data-col="{{ col }}">
+                  <div class="game-row color-{{ colore owner_team ../rule }}">
+                    <div class="game-card" data-row="{{ row }}" data-col="{{ col }}" data-owner="{{ owner_team }}"  data-color="{{ color }}">
+            					  {{word}}
+            				</div>
+                  </div>
+                </div>
+              </td>
+              {{ riga_end col }}
+            {{/each}}
+          </table>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="module1">
+      <div class="caption1"><b>Chat:</b> <img src="/img/offbutton.png" alt="rollup" title="rolls up this module" /></div>
+      <div class="body1">
+        <ul id="messages1"></ul>
+        <span id="notifyUser1"></span>
+        <form id="form1">
+          <input type="hidden" id="user" value="{{user.alias}}" />
+          <input type="hidden" id="team" value="{{my_color}}" />
+          <input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." /><input type="submit" id="button" value="Invia"/>
+        </form>
+      </div>
+    </div>
+
+    <div class="module2">
+      <div class="caption2"><b>Partita:</b> <img src="/img/offbutton.png" alt="rollup" title="rolls up this module" /></div>
+      <div class="body2">
+        <ul id="messages2"></ul>
+        <span id="notifyUser2"></span>
+        <form id="form2">
+          <input type="hidden" id="user" value="{{user.alias}}" />
+          <input type="hidden" id="team" value="{{my_color}}" />
+          {{buttonPartita rule }}
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="gameUrlPopup" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Game URL</h4>
+                </div>
+                <div class="modal-body">
+                    <p>To invite a friend, give the following URL:</p>
+                    <p><em><span class="text-info" id="gameUrl"></span></em></p>
+                    <p>The game will be started once your friend joined the game.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
