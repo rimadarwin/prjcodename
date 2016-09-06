@@ -11,7 +11,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 var env = process.env.NODE_ENV || 'default';
-var port = process.env.PORT || '3000';
+var port = process.env.PORT || '80';
 var config = require('config');
 
 var app = express();

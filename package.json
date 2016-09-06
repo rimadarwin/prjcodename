@@ -1,7 +1,6 @@
 {
   "name": "prjcodename",
   "version": "1.0.0",
-  "private": true,
   "description": "Codenames game",
   "author": "rimadarwin",
   "license": "MIT",
