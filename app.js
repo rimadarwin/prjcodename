@@ -11,6 +11,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 var env = process.env.NODE_ENV || 'default';
+var port = process.env.PORT || '3000';
 var config = require('config');
 
 var app = express();
@@ -167,7 +168,7 @@ app.use('/search', search);
 require('./config/errorHandlers.js')(app);
 
 // launch app server
-var server = require('http').createServer(app).listen(3000);
+var server = require('http').createServer(app).listen(port);
 
 require('./config/socket.js')(server);
 

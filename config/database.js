@@ -5,7 +5,10 @@ module.exports = function (app, mongoose) {
     var connect = function () {
         var options = {
             server: {
-                socketOptions: { keepAlive: 1 }
+                socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 }
+            },
+            replset: {
+                socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 }
             },
             auto_reconnect:true
         };
