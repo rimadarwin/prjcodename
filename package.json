@@ -5,6 +5,9 @@
   "author": "rimadarwin",
   "license": "MIT",
   "main": "app.js",
+  "scripts": {
+    "start": "app.js"
+  },
   "dependencies": {
     "body-parser": "~1.15.2",
     "config": "^1.5.0",
