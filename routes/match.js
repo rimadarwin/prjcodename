@@ -34,7 +34,7 @@ router.post('/matchNew', function(req, res, next) {
     function (err, game) {
         if (game !== null) {
             //req.flash('groupNewStatus', false);
-            req.flash('errorMessage', 'Esiste già un gioco con questo nome: ' + name);
+            req.flash('errorMessage', '0Esiste già un gioco con questo nome: ' + name);
             res.redirect('/match/matchNew');
         } else { // no game found
             /* inserire logica di creazione tabellone */
@@ -56,7 +56,7 @@ router.post('/matchNew', function(req, res, next) {
                                 } else {
                                     req.user = user;
                                     //req.flash('groupNewStatus', true);
-                                    req.flash('successMessage', 'Gioco creato con successo: ' + u.name);
+                                    req.flash('errorMessage', '1Gioco creato con successo: ' + u.name);
                                     return res.redirect('/match/'+u._id);
                                 }
                         });

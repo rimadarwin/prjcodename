@@ -4,10 +4,10 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Please sign up</h3>
             </div>
-            <form role="form" method="post" action="/register">
+            <form role="form" method="post" enctype="multipart/form-data" action="/register">
                 <div class="panel-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="photo" placeholder="Photo" autofocus required>
+                        <input type="text" class="form-control" name="photo" placeholder="Photo" autofocus>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="Name" autofocus required>

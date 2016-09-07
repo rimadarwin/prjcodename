@@ -12,8 +12,8 @@ router.get('/', function(req, res) {
         isAccountPage: true,
         lastConnection: moment(req.user.lastConnection).fromNow(),
         updateStatus: req.flash('updateStatus'),
-        successMessage: req.flash('successMessage')
-    }); 
+        errorMessage: req.flash('errorMessage')
+    });
 });
 
 /* Update hj user account. */
@@ -29,17 +29,17 @@ router.post('/', function(req, res) {
             User.findOneAndUpdate({_id: req.user._id}, { password: newPasswordHash }, {} ,function (err, user) {
                 req.user = user;
                 req.flash('updateStatus', true);
-                req.flash('successMessage', 'Your password has been updated successfully');
+                req.flash('errorMessage', '1Your password has been updated successfully');
                 res.redirect('/account');
             });
         } else {
             req.flash('updateStatus', false);
-            req.flash('errorMessage', 'The confirmation password does not match the new password');
+            req.flash('errorMessage', '0The confirmation password does not match the new password');
             res.redirect('/account');
         }
     } else {
         req.flash('updateStatus', false);
-        req.flash('errorMessage', 'The current password is incorrect');
+        req.flash('errorMessage', '0The current password is incorrect');
         res.redirect('/account');
     }
 
