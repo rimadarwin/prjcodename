@@ -199,7 +199,7 @@ $( document ).ready(function() {
         Messenger({
             extraClasses: 'messenger-fixed messenger-on-right messenger-on-top'
         }).post({
-            message: $("#errorMessage").html().substring(1);
+            message: $("#errorMessage").html().substring(1),
             type: tipo,
             showCloseButton: true,
             hideAfter: 4
