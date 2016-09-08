@@ -7,7 +7,7 @@
         <div><span style="color:#67a7e0">Team Blu</span>: <span id="teamb">{{html team_b}}</span></div>
         <div><p> </p></div>
         <div class="score"><p>Punteggio: <span id="scorer" style="color:#e0676b"></span> - <span id="scoreb" style="color:#67a7e0"></span></p></div>
-        <div><p><input type="button" id="buttonStart" value="Start"/></p></div>
+        <div><p><form role="form" method="post" action="/match/matchStart"><input type="hidden" name="id_game" value="{{ game._id }}"><input type="button" id="buttonStart" value="Inizia"/></form></p></div>
         <div><p> </p></div>
         <div>
 		    	<div class="game-board text-center">
@@ -39,7 +39,7 @@
         <form id="form1">
           <input type="hidden" id="user" value="{{user.alias}}" />
           <input type="hidden" id="team" value="{{my_color}}" />
-          <input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." /><input type="submit" id="button" value="Invia"/>
+          <input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Scrivi qui il tuo messaggio..." /><input type="submit" id="button" value="Invia"/>
         </form>
       </div>
     </div>

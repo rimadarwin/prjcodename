@@ -297,6 +297,8 @@ $( document ).ready(function() {
           //console.log("into client registerGame");
           var m1 = $('#messages1').html();
           var m2 = $('#messages2').html();
+          var scoreR = $('#game-details').attr("data-scoreR");
+          var scoreB = $('#game-details').attr("data-scoreB");
           //var b = $('.game-board').html();
           var b = [];
           for (i=0;i<5;i++){
@@ -311,13 +313,15 @@ $( document ).ready(function() {
               }
             }
           }
-          socket.emit('updateGame',sid,m1,m2,b);
+          socket.emit('updateGame',sid,m1,m2,b,scoreR,scoreB);
         });
 
-        socket.on('updateGame', function(sid,m1,m2,b){
+        socket.on('updateGame', function(sid,m1,m2,b,scoreR,scoreB){
           //console.log("into client updateGame");
           $('#messages1').html(m1); //update chat
           $('#messages2').html(m2); //update chat indizi
+          $('#game-details').attr("data-scoreR",scoreR);
+          $('#game-details').attr("data-scoreR",scoreB);
           // update board
           for (i=0;i<b.length;i++){
             obj = b[i];
@@ -348,8 +352,9 @@ $( document ).ready(function() {
           var g = $("#game-details");
           var creator = g.attr("data-creator");
           var user = g.attr("data-user");
+          var status = g.attr("data-status");
           g.attr("data-ready",r);
-          if (r=="1" && user==creator){
+          if (status=="waiting" && r=="1" && user==creator){
             //console.log("dentro");
             //$("#start_button").removeAttr("disabled");
             $("#buttonStart").css("display","block");

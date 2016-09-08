@@ -9,6 +9,21 @@ var ObjectId = mongoose.Types.ObjectId;
 
 var router = express.Router();
 
+router.post('/matchStart', function(req, res) {
+  var id_game = req.body.id_game;
+  var status = 'started';
+  Game.findByIdAndUpdate(id_game,
+      { $set: {'status': status}},
+      { safe: true, upsert: true},
+  function(err, game) {
+          if (err) {
+              next(err);
+          } else {
+            console.log('status saved on DB!');
+          }
+    });
+
+});
 
 router.get('/matchNew', function(req, res) {
     var errors = req.flash('errorMessage');

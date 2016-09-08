@@ -23,7 +23,7 @@ router.post('/',
     passport.authenticate('local',{ failureRedirect: '/login', failureFlash: true }),
     function(req, res) {
         User.findOneAndUpdate({_id: req.user._id}, { lastConnection: new Date() }, {} ,function (err, user) {
-            req.flash('errorMessage', '1Welcome ' + user.name + '!');
+            req.flash('errorMessage', '1Benvenuto ' + user.name + '!');
             res.redirect('/home');
         });
     });

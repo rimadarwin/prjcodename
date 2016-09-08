@@ -24,7 +24,11 @@ router.get('/', function(req, res) {
 
 
 router.get('/home', function(req, res) {
-  Game.find({status: 'waiting'}, function(err, games) {
+  Game.find( { $or:[
+                  {status: 'started'},
+                  {status: 'waiting'}
+                ]},
+  function(err, games) {
        var errorMessage = req.flash('errorMessage');
        res.render('partials/home', {
             title: 'Codenames',
@@ -38,7 +42,7 @@ router.get('/home', function(req, res) {
 
 router.get('/logout', function(req, res) {
     req.logout();
-    req.flash('errorMessage', '1You have been successfully logged out');
+    req.flash('errorMessage', '1Ti sei disconnesso con successo');
     res.redirect('/');
 });
 

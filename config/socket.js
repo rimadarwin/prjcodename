@@ -21,7 +21,7 @@ module.exports = function (server) {
           match.on('connection', function (socket) {
 */
             //socket.emit('chatMessage', 'System', '<b>' + name + '</b> si è unito alla partita');
-            socket.on('updateGame', function(sid,m1,m2,board){
+            socket.on('updateGame', function(sid,m1,m2,board,scoreR,scoreB){
               console.log("into server updateGame from " + sid);
               var newsid = "";
               if (sid==null || sid=='undefined' || sid==''){
@@ -31,7 +31,7 @@ module.exports = function (server) {
               }
               console.log("newsid is " + newsid);
               //socket.broadcast.to(sid).emit('updateGame', sid,m1,m2,b);
-              io.sockets.connected[sid].emit('updateGame', newsid,m1,m2,board);
+              io.sockets.connected[sid].emit('updateGame', newsid,m1,m2,board,scoreR,scoreB);
         	  });
 
             socket.on('registerGame', function(sid){
@@ -84,6 +84,7 @@ module.exports = function (server) {
               });
             socket.on('startGame', function(starter){
               console.log("into server startGame " + starter);
+              // salvataggio su database dello status della partita
               io.emit('startGame', starter);
             });
 

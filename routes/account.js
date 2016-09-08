@@ -29,17 +29,17 @@ router.post('/', function(req, res) {
             User.findOneAndUpdate({_id: req.user._id}, { password: newPasswordHash }, {} ,function (err, user) {
                 req.user = user;
                 req.flash('updateStatus', true);
-                req.flash('errorMessage', '1Your password has been updated successfully');
+                req.flash('errorMessage', '1La tua password è stata aggiornata con successo');
                 res.redirect('/account');
             });
         } else {
             req.flash('updateStatus', false);
-            req.flash('errorMessage', '0The confirmation password does not match the new password');
+            req.flash('errorMessage', '0La password di conferma non coincide con la nuova password');
             res.redirect('/account');
         }
     } else {
         req.flash('updateStatus', false);
-        req.flash('errorMessage', '0The current password is incorrect');
+        req.flash('errorMessage', '0La password attuale è errata');
         res.redirect('/account');
     }
 

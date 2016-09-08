@@ -72,7 +72,7 @@ hbs.registerHelper("colore", function (owner, rule){
 hbs.registerHelper("buttonPartita", function (rule){
   console.log("rule:" + rule );
   if (rule == "0")
-    return new hbs.SafeString("<input id='indizio' autocomplete='off' placeholder='parola indizio' /><input id='numero' autocomplete='off' placeholder='N°' /><input type='submit' id='buttonIndizio' value='Invia'/>");
+    return new hbs.SafeString("<input id='indizio' autocomplete='off' placeholder='Parola indizio...' /><input id='numero' autocomplete='off' placeholder='N°' /><input type='submit' id='buttonIndizio' value='Invia'/>");
   else
     return new hbs.SafeString("<input type='submit' id='buttonFatto' value='Fatto'/>");
 });
@@ -145,6 +145,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 require('./config/passport')(app, passport);
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // configure routes
 var index = require('./routes/index');
