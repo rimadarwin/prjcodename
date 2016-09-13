@@ -12,6 +12,18 @@ var thumb = './public/uploaded/thumb';
 var size = 100;
 var ratio = 0;
 
+/*
+var widthRatio =  width / image.width();
+var heightRatio = height / image.height();
+var ratio = Math.max(widthRatio, heightRatio);
+
+image
+  .batch()
+  .scale(ratio)
+  .crop(width, height)
+  .exec(callback);
+*/
+
 /* GET user account details. */
 router.get('/', function(req, res) {
   var photo = "a.jpg";

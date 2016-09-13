@@ -115,7 +115,8 @@ module.exports = function (server) {
               }
               //console.log("newsid is " + newsid);
               //socket.broadcast.to(sid).emit('updateGame', sid,m1,m2,b);
-              io.sockets.connected[sid].emit('updateGame', newsid,m1,m2,board,scoreR,scoreB,turn);
+              //eliminata la memorizzazione della chat
+              io.sockets.connected[sid].emit('updateGame', newsid,'',m2,board,scoreR,scoreB,turn);
         	  });
 
             socket.on('updateReadyState', function(ready){
@@ -168,7 +169,8 @@ module.exports = function (server) {
         } else {
           //console.log("grid: "+game.grid);
           if (game.chat!=null && game.chat!='undefined'){
-            io.sockets.connected[id_socket].emit('updateGame',newsid,game.chat,game.clues,game.grid,game.scoreR,game.scoreB,game.turn);
+            //eliminata la memorizzazione della chat
+            io.sockets.connected[id_socket].emit('updateGame',newsid,'',game.clues,game.grid,game.scoreR,game.scoreB,game.turn);
           }
         }
       });
