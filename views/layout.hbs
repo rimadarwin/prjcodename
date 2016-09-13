@@ -19,10 +19,10 @@
     <div class="header">
         <ul class="nav nav-pills pull-right">
             {{#if user}}
-            <li class="{{#if isHomePage}} active {{/if}}"><a href="/home" title="Go to home page"><i class="fa fa-home"></i> Home</a></li>
+            <li class="{{#if isHomePage}} active {{/if}}"><a href="/home" title="Vai alla home page"><i class="fa fa-home"></i> Home</a></li>
             {{#if isHomePage}}
-            <li class="{{#if isSearchPage}} active {{/if}}"><a href="/search" title="Search a game"><i class="fa fa-search"></i> Match Search</a></li>
-            <li class="{{#if isAccountPage}} active {{/if}}"><a href="/account" title="My account"><span id="loggedUser" data-user="{{ user.name }}"></span><i class="fa fa-user"></i> {{ user.name }}</a></li>
+            <li class="{{#if isSearchPage}} active {{/if}}"><a href="/search" title="Ricerca una partita"><i class="fa fa-search"></i> Ricerca</a></li>
+            <li class="{{#if isAccountPage}} active {{/if}}"><a href="/account" title="Il mio account"><span id="loggedUser" data-user="{{ user.name }}"></span><i class="fa fa-user"></i> {{ user.name }}</a></li>
             {{/if}}
             {{#if isProfilePage}}
             <li class="{{#if isGroupPage}} active {{/if}}"><a href="/group/{{ group.0._id }}" title="Back to Group"><i class="fa fa-group"></i> Group </a></li>
@@ -32,10 +32,10 @@
             <li class="{{#if isModGroupPage}} active {{/if}}"><a href="/group/modGroup/:id" title="Modify a group"><i class="fa fa-gamepad"></i> Modify Group</a></li>
             <li class="{{#if isMatchNewPage}} active {{/if}}"><a href="/match/matchNew/{{ group._id }}" title="Create a new play"><i class="fa fa-gamepad"></i> Create Play</a></li>
             {{/if}}
-            <li><a href="/logout" title="Sign out"><i class="fa fa-sign-out"></i></a></li>
+            <li><a href="/logout" title="Disconnetti"><i class="fa fa-sign-out"></i></a></li>
             {{else}}
-            <li class="{{#if isHomePage}} active {{/if}}"><a href="/" title="Go to home page"><i class="fa fa-home"></i> Home</a></li>
-            <li class="{{#if isLoginPage}} active {{/if}}"><a href="/login"><i class="fa fa-sign-in"></i> Sign in</a></li>
+            <li class="{{#if isHomePage}} active {{/if}}"><a href="/" title="Vai alla home page"><i class="fa fa-home"></i> Home</a></li>
+            <li class="{{#if isLoginPage}} active {{/if}}"><a href="/login"><i class="fa fa-sign-in"></i> Connetti</a></li>
             {{/if}}
 
         </ul>
