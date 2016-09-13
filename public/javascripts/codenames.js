@@ -9,6 +9,23 @@ function notifyTyping() {
   socket.emit('notifyUser', user);
 }
 */
+function endGame(team,opposite){
+  //console.log("endGame");
+  var squadra = "";
+  var g = $("#game-details")
+  g.attr("data-numero",numero);
+  var m = $('#messages2');
+  if (opposite)
+    squadra = (team==1)?"Rossa":"Blu";
+  else
+    squadra = (team==0)?"Rossa":"Blu";
+  m.append('<li><b>Vince la squadra ' + squadra + '!</b></li>');
+  $("#buttonFatto").attr("disabled",true);
+  setTimeout(function(){
+    m.scrollTop(m.outerHeight()+m.offset().top);
+  }, 500);
+};
+
 function grid(){
   var b = [];
   for (i=0;i<5;i++){
@@ -57,7 +74,7 @@ function nextTeam(team){
   m.append(stringa);
   setTimeout(function(){
     m.scrollTop(m.outerHeight()+m.offset().top);
-  }, 1000);
+  }, 500);
 
   if (g.attr("data-team")==team){
     if (g.attr("data-rule")=="1"){
@@ -155,7 +172,7 @@ $('#buttonFatto').on('click', function() {
   var g = $('#game-details');
   team = g.attr('data-team');
   //console.log("nextTeam for click");
-  nextTeam(team);
+  //nextTeam(team);
   socket.emit('nextTeam', team); // turn 0-oppteam-0
 });
 
@@ -192,7 +209,7 @@ $( document ).ready(function() {
      * This name is then passed to the socket connection handshake query
      */
 
-    var time_out=300;//5 minutes in seconds
+    var time_out=500;//mezzo secondo
     if($("#game-details").length) {
         id_game = $("#game-details").attr("data-id");
     } else {
@@ -215,7 +232,7 @@ $( document ).ready(function() {
             message: $("#loginError").html(),
             type: 'error',
             showCloseButton: true,
-            hideAfter: 4
+            hideAfter: 3
         });
     }
 
@@ -231,7 +248,7 @@ $( document ).ready(function() {
             message: $("#errorMessage").html().substring(1),
             type: tipo,
             showCloseButton: true,
-            hideAfter: 4
+            hideAfter: 3
         });
     }
 
@@ -297,7 +314,7 @@ $( document ).ready(function() {
             setTimeout(function(){
               m.append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
               m.scrollTop(m.outerHeight()+m.offset().top);
-            }, 2000);
+            }, 500);
           } else {
             m.append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
             m.scrollTop(m.outerHeight()+m.offset().top);
@@ -381,7 +398,7 @@ $( document ).ready(function() {
             }
           }
           // update board
-          console.log(b);
+          //console.log(b);
           if (b!=null && b.length>0){
             for (i=0;i<b.length;i++){
               obj = b[i];
@@ -401,7 +418,7 @@ $( document ).ready(function() {
           if(user != me) {
             $('#notifyUser1').text(user + ' is typing ...');
           }
-          setTimeout(function(){ $('#notifyUser1').text(''); }, 1000);
+          setTimeout(function(){ $('#notifyUser1').text(''); }, 500);
         });
 
         socket.on('updateSid', function(sid){
@@ -489,7 +506,7 @@ $( document ).ready(function() {
           m.append(stringa);
           setTimeout(function(){
             m.scrollTop(m.outerHeight()+m.offset().top);
-          }, 1000);
+          }, 500);
 
           var turn = "0-" + starter + "-0";
           g.attr("data-turn",turn);
@@ -520,7 +537,7 @@ $( document ).ready(function() {
           m.append('<li><b style="color:' + color + '">' + indizio + ' - ' + numero + ':</b> </li>');
           setTimeout(function(){
             m.scrollTop(m.outerHeight()+m.offset().top);
-          }, 1000);
+          }, 500);
           var turn = "1-" + team + "-"+(Number(numero)+1);
           g.attr("data-turn",turn);
         });
@@ -530,6 +547,8 @@ $( document ).ready(function() {
           var colore = (owner == 0) ? '#e0676b' : (owner == 1) ? '#67a7e0' : (owner == 2) ? '#e0dd67' : '#000016';
           var g = $("#game-details")
           var rule = g.attr("data-rule");
+          var creator = g.attr("data-creator");
+          var user = g.attr("data-user");
           g.attr("data-numero",numero);
           //console.log("2) tentativi a disposizione: "+g.attr("data-numero"));
           if (owner==0)
@@ -552,7 +571,7 @@ $( document ).ready(function() {
           m.append(stringa);
           setTimeout(function(){
             m.scrollTop(m.outerHeight()+m.offset().top);
-          }, 1000);
+          }, 500);
 
           var turn = "1-" + team + "-"+numero;
           g.attr("data-turn",turn);
@@ -565,8 +584,10 @@ $( document ).ready(function() {
           }
           if (risultato == 0){
             if (scorer==0 || scoreb==0){
-              socket.emit('endGame', team, false);
-              socket.emit('updateDb', room, team, "finished", $('#messages1').html(), m.html(), grid(), scorer, scoreb, g.attr("data-turn"));
+              //socket.emit('endGame', team, false);
+              endGame(team, false);
+              if (user==creator)
+                socket.emit('updateDb', room, team, "finished", $('#messages1').html(), m.html(), grid(), scorer, scoreb, g.attr("data-turn"));
             } else if (numero == 0) {
               //console.log("nextTeam for ending step");
               //socket.emit("nextTeam",team);
@@ -574,8 +595,10 @@ $( document ).ready(function() {
             }
           } else {
             if (risultato==2){
-              socket.emit('endGame', team, true);
-              socket.emit('updateDb', room, (team=="1")?"0":"1", "finished", $('#messages1').html(), m.html(), grid(), scorer, scoreb, g.attr("data-turn"));
+              //socket.emit('endGame', team, true);
+              endGame(team, true);
+              if (user==creator)
+                socket.emit('updateDb', room, (team=="1")?"0":"1", "finished", $('#messages1').html(), m.html(), grid(), scorer, scoreb, g.attr("data-turn"));
             } else {
               //console.log("nextTeam for yellow card");
               //socket.emit("nextTeam",team);
@@ -598,7 +621,7 @@ $( document ).ready(function() {
           $("#buttonFatto").attr("disabled",true);
           setTimeout(function(){
             m.scrollTop(m.outerHeight()+m.offset().top);
-          }, 1000);
+          }, 500);
         });
 
         socket.on('nextTeam', function(team){
