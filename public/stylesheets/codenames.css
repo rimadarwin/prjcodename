@@ -270,7 +270,7 @@ a:focus {
 }
 
 #buttonStart { color:#FFF; background: #2D9F0B; border: none; padding: 2px;  width: 150px; display:none; }
-#homeimg { width: 70%; min-width: 500px; max-width: 800px; }
+#homeimg { width: 65%; min-width: 450px; max-width: 700px; }
 /* chat properties */
 .module1 { background: #fff; width: 45%; min-width: 300px; max-width: 500px; position: fixed;  left: 10px; bottom: 10px; border: 3px ridge #2D9F0B; text-align:right;}
 .module1 img { height: 14px; }
