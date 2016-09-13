@@ -37,9 +37,9 @@ var options = {
     }
 };
 */
-/*
+
 var options = {
-  tmpDir: __dirname + '/../public/uploaded/tmp',
+  tmpDir: __dirname + '/../public/uploaded/thumb',
   uploadDir: __dirname + '/../public/uploaded/files',
   uploadUrl: '/uploaded/files/',
   copyImgAsThumb: true, // required
@@ -54,14 +54,15 @@ var options = {
 
 // init the uploader
 var uploader = require('blueimp-file-upload-expressjs')(options);
-*/
+
 
 var original = './public/uploaded/files';
 var thumb = './public/uploaded/thumb';
 var size = 100;
+var ratio = 0;
 
+/*
 var multer = require('multer');
-//var upload = multer({ dest: __dirname + '/public/uploaded/files' });
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, original);
@@ -71,6 +72,7 @@ var storage = multer.diskStorage({
   }
 });
 var upload = multer({storage: storage}).single('photo');
+*/
 
 router.get('/', function(req, res) {
     var errors = req.flash('errorMessage');
@@ -87,14 +89,15 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res, next) {
+    /*
     upload(req, res, function(err) {
     if(err) {
       console.log('Error Occured: '+err);
       return;
     }
-    //console.log(req.file);
-  //uploader.post(req, res, function (obj) {
-    //res.send(JSON.stringify(obj));
+    */
+    uploader.post(req, res, function (obj) {
+    console.log(JSON.stringify(obj));
 
     //var photo = req.body.photo;
     var photo = req.file.originalname;
