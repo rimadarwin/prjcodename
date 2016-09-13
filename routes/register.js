@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var gm = require('gm').subClass({ imageMagick: true});
 var util = require('../config/util.js');
 //var multer = require('multer');
 var User = mongoose.model('User');
@@ -55,12 +56,15 @@ var options = {
 var uploader = require('blueimp-file-upload-expressjs')(options);
 */
 
+var original = './public/uploaded/files';
+var thumb = './public/uploaded/thumb';
+var size = 100;
 
 var multer = require('multer');
 //var upload = multer({ dest: __dirname + '/public/uploaded/files' });
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/uploaded/files');
+    cb(null, original);
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -88,7 +92,7 @@ router.post('/', function(req, res, next) {
       console.log('Error Occured: '+err);
       return;
     }
-    console.log(req.file);
+    //console.log(req.file);
   //uploader.post(req, res, function (obj) {
     //res.send(JSON.stringify(obj));
 
@@ -111,7 +115,22 @@ router.post('/', function(req, res, next) {
                     if (err) {
                         next(err);
                     } else {
-                        console.log('new user:' + u);
+                        //console.log('new user:' + u);
+                        /*
+                        var start = original + "/" + photo;
+                        var finish = finish + "/" + photo;
+                        gm(start)
+                              .crop(250,250,20,20)
+                              .resize(size,size)
+                              .write(finish, function(){
+                                  gm(size,size,'none')
+                                      .fill(finish)
+                                      .drawCircle(size/2,size/2,size/2, 0)
+                                      .write(finish, function(err){
+                                        console.log(err||'done');
+                                      });
+                              });
+                        */
                         req.login(u, function(err) {
                             if (err) { return next(err); }
                             req.flash('registerStatus', true);

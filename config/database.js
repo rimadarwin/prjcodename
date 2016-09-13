@@ -13,7 +13,7 @@ module.exports = function (app, mongoose) {
             auto_reconnect:true
         };
         mongoose.Promise = global.Promise;
-        mongoose.connect(config.get('codenames.dbrem'), options);
+        mongoose.connect(config.get('codenames.dbloc'), options);
     };
     connect();
 

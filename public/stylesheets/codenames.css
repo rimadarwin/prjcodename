@@ -55,7 +55,7 @@ body {
 }
 .jumbotron .btn {
     padding: 14px 24px;
-    font-size: 21px;
+    font-size: 15px;
 }
 
 /* Supporting marketing content */
@@ -283,11 +283,11 @@ a:focus {
 .body2 form #numero { border: 0; padding: 2px; width: 15%; margin-right: .5%; }
 .body2 form #buttonIndizio { color:#FFF; background: #2D9F0B; border: none; padding: 2px;  width: 14%; }
 .body2 form #buttonFatto { color:#FFF; background: #2D9F0B; border: none; padding: 2px;  width: 18%; }
-#messages1 { background: #fff; list-style-type: none; margin: 0; padding: 0; height: 230px; overflow:auto; -webkit-overflow-scrolling: touch;}
+#messages1 { font-size: 12px; background: #fff; list-style-type: none; margin: 0; padding: 0; height: 230px; overflow:auto; -webkit-overflow-scrolling: touch;}
 #messages1 li { background: #fff; padding: 5px 10px; }
 #messages1 li:nth-child(odd) { background: #eee; }
 #notifyUser1 { position: relative; top: 42px; width: 100%; }
-#messages2 { background: #fff; list-style-type: none; margin: 0; padding: 0; height: 230px; overflow:auto; -webkit-overflow-scrolling: touch;}
+#messages2 { font-size: 12px; background: #fff; list-style-type: none; margin: 0; padding: 0; height: 230px; overflow:auto; -webkit-overflow-scrolling: touch;}
 #messages2 li { padding: 5px 10px; }
 #messages2 li:nth-child(odd) { background: #eee; }
 #notifyUser2 { position: relative; top: 42px; width: 100%; }

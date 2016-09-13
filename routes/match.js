@@ -10,6 +10,7 @@ var ObjectId = mongoose.Types.ObjectId;
 var router = express.Router();
 
 router.post('/matchStart', function(req, res) {
+  console.log('into matchStart');
   var id_game = req.body.id_game;
   var status = 'started';
   Game.findByIdAndUpdate(id_game,
