@@ -38,15 +38,17 @@ var args = [
 router.get('/', function(req, res) {
   var photo = "a.jpg";
   var start = original + "/" + photo;
-  //console.log(start);
+  console.log(start);
   var finish = thumb + "/" + photo;
   lw.open(start, function(err, image){
+    console.log(err||'apri');
     if (err) throw err;
     image.scale(0.5, function(err, image){
+      console.log(err||'scala');
       if (err) throw err;
       image.writeFile(finish, function(err) {
+        console.log(err||'fatto');
         if (err) throw err;
-        console.log(err||'done');
       });
     });
   });
