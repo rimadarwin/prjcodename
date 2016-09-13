@@ -19,8 +19,8 @@ router.get('/', function(req, res) {
   console.log(start);
   var finish = thumb + "/" + photo;
   lw.open(start, function(err, image){
-    var widthRatio =  width / image.width();
-    var heightRatio = height / image.height();
+    var widthRatio =  size / image.width();
+    var heightRatio = size / image.height();
     ratio = Math.max(widthRatio, heightRatio);
     console.log(err||'width: '+image.width());
     console.log(err||'height: '+image.height());
