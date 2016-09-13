@@ -272,9 +272,9 @@ a:focus {
 #buttonStart { color:#FFF; background: #2D9F0B; border: none; padding: 2px;  width: 150px; display:none; }
 #homeimg { width: 65%; min-width: 450px; max-width: 700px; }
 /* chat properties */
-.module1 { background: #fff; width: 45%; min-width: 300px; max-width: 500px; position: fixed;  left: 10px; bottom: 10px; border: 3px ridge #2D9F0B; text-align:right;}
+.module1 { background: #fff; width: 45%; min-width: 300px; max-width: 400px; position: fixed;  left: 10px; bottom: 10px; border: 3px ridge #2D9F0B; text-align:right;}
 .module1 img { height: 14px; }
-.module2 { background: #fff; width: 45%; min-width: 300px; max-width: 500px; position: fixed;  right: 10px; bottom: 10px; border: 3px ridge #2D9F0B; text-align:left;}
+.module2 { background: #fff; width: 45%; min-width: 300px; max-width: 400px; position: fixed;  right: 10px; bottom: 10px; border: 3px ridge #2D9F0B; text-align:left;}
 .module2 img { height: 14px; }
 .body1 { position: relative; height: 260px; display: none; margin-left: .5%;}
 .body1 form { background: #000; padding: 3px; top: 170px; width: 99%; }
