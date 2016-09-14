@@ -91,7 +91,8 @@ module.exports = function (server) {
 
             socket.on('resetGame', function(){
               resetGame();
-            }
+            });
+
             socket.on('startGame', function(starter,sender){
               //console.log("into server startGame " + starter);
               // salvataggio su database dello status della partita
@@ -181,7 +182,7 @@ module.exports = function (server) {
 
     function resetGame(){
       console.log('into resetGame: ');
-      Game.UpdateDb({[
+      Game.UpdateDb({ $or: [
                       {status: 'started'},
                       {status: 'waiting'}
                     ]},
