@@ -182,7 +182,7 @@ module.exports = function (server) {
 
     function resetGame(){
       console.log('into resetGame: ');
-      Game.UpdateDb({ $or: [
+      Game.update({ $or: [
                       {status: 'started'},
                       {status: 'waiting'}
                     ]},
