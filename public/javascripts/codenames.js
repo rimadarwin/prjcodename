@@ -150,6 +150,11 @@ $('#buttonForce').on('click', function() {
   g.attr('data-numero',"4");
 });
 
+$('#buttonReset').on('click', function() {
+  //console.log("click force");
+  socket.emit('resetGame');
+});
+
 $('#buttonIndizio').on('click', function() {
   //console.log("buttonIndizio click");
   var team = $('#team').val();

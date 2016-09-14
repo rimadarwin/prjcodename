@@ -89,6 +89,9 @@ module.exports = function (server) {
               }
         	  });
 
+            socket.on('resetGame', function(){
+              resetGame();
+            }
             socket.on('startGame', function(starter,sender){
               //console.log("into server startGame " + starter);
               // salvataggio su database dello status della partita
@@ -174,7 +177,23 @@ module.exports = function (server) {
           }
         }
       });
+    }
 
+    function resetGame(){
+      console.log('into resetGame: ');
+      Game.UpdateDb({[
+                      {status: 'started'},
+                      {status: 'waiting'}
+                    ]},
+          { $set: {'status': 'finished'}},
+          { safe: true, upsert: true},
+      function(err, game) {
+              if (err) {
+                  next(err);
+              } else {
+                console.log('status saved on DB!');
+              }
+      });
     }
 
 };
