@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 //var gm = require('gm').subClass({ imageMagick: true});
 var util = require('../config/util.js');
-var fs = require('fs.extra');
+//var fs = require('fs.extra');
 //var multer = require('multer');
 var User = mongoose.model('User');
 
@@ -108,10 +108,12 @@ router.post('/', function(req, res, next) {
     var name = req.body.name;
     var alias = req.body.alias;
     var photo = alias + ".jpg";
+    console.log(photo);
     var password = req.body.password;
     var confirmPassword = req.body.confirmPassword;
     var thumb = './public/uploaded/thumb/';
 
+    /*
     fs.copy(thumb+def, thumb+photo, { replace: false }, function (err) {
       if (err) {
         // i.e. file already exists or can't write to directory
@@ -119,6 +121,7 @@ router.post('/', function(req, res, next) {
       }
       //console.log("Copied 'foo.txt' to 'bar.txt'");
     });
+    */
 
     User.findOne({alias: alias} ,function (err, user) {
         if (user !== null) {
@@ -151,7 +154,7 @@ router.post('/', function(req, res, next) {
                         req.login(u, function(err) {
                             if (err) { return next(err); }
                             req.flash('registerStatus', true);
-                            req.flash('errorMessage', '1Benvenuto ' + u.name + "!");
+                            req.flash('errorMessage', '1Benvenut' + u.name.substring(u.name.length-1) + ' ' + u.name + "!");
                             return res.redirect('/home');
                         });
                     }

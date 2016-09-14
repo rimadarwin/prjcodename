@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var util = require('../config/util.js');
 //var gm = require('gm').subClass({ imageMagick: true});
 //var im = require('imagemagick');
-var lw = require('lwip');
+//var lw = require('lwip');
 var router = express.Router();
 var moment = require('moment');
 
@@ -12,6 +12,7 @@ var thumb = './public/uploaded/thumb';
 var size = 100;
 var ratio = 0;
 
+/*
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -22,7 +23,7 @@ var storage = multer.diskStorage({
   }
 });
 var upload = multer({storage: storage}).single('photo');
-
+*/
 /*
 var widthRatio =  width / image.width();
 var heightRatio = height / image.height();
@@ -35,6 +36,7 @@ image
   .exec(callback);
 */
 
+/*
 router.get('/photo', function(req, res) {
   res.render('partials/photo', {
       title: 'Binko - Foto',
@@ -45,6 +47,7 @@ router.get('/photo', function(req, res) {
       errorMessage: req.flash('errorMessage')
   });
 });
+
 
 router.post('/photo', function(req, res) {
     var photo = "a.jpg";
@@ -99,6 +102,7 @@ router.post('/photo', function(req, res) {
     }
 
 });
+*/
 
 /* GET user account details. */
 router.get('/', function(req, res) {
