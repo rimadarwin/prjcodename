@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 //var gm = require('gm').subClass({ imageMagick: true});
 var util = require('../config/util.js');
-var multer = require('multer');
+var fs = require('fs.extra');
+//var multer = require('multer');
 var User = mongoose.model('User');
 
 var router = express.Router();
@@ -55,6 +56,7 @@ var options = {
 var uploader = require('blueimp-file-upload-expressjs')(options);
 */
 
+/*
 var original = './public/uploaded/files';
 var thumb = './public/uploaded/thumb';
 var size = 100;
@@ -71,7 +73,7 @@ var storage = multer.diskStorage({
   }
 });
 var upload = multer({storage: storage}).single('photo');
-
+*/
 
 router.get('/', function(req, res) {
     var errors = req.flash('errorMessage');
@@ -81,7 +83,7 @@ router.get('/', function(req, res) {
     }
 
     res.render('partials/register', {
-        title: 'Codenames - Register',
+        title: 'Codenames - Registra',
         errorMessage: errorMessage,
         isLoginPage: true
     });
@@ -89,22 +91,34 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res, next) {
 
+    /*
     upload(req, res, function(err) {
     if(err) {
       console.log('Error Occured: '+err);
       return;
     }
-
+    */
     /*
     uploader.post(req, res, function (obj) {
     console.log(JSON.stringify(obj));
     */
     //var photo = req.body.photo;
-    var photo = req.file.originalname;
+    //var photo = req.file.originalname;
+    var def = "default.jpg";
     var name = req.body.name;
     var alias = req.body.alias;
+    var photo = alias + ".jpg";
     var password = req.body.password;
     var confirmPassword = req.body.confirmPassword;
+    var thumb = './public/uploaded/thumb/';
+
+    fs.copy(thumb+def, thumb+photo, { replace: false }, function (err) {
+      if (err) {
+        // i.e. file already exists or can't write to directory
+        throw err;
+      }
+      //console.log("Copied 'foo.txt' to 'bar.txt'");
+    });
 
     User.findOne({alias: alias} ,function (err, user) {
         if (user !== null) {
@@ -149,7 +163,7 @@ router.post('/', function(req, res, next) {
             }
         }
     });
-  });
+  //});
 });
 
 module.exports = router;
