@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 //var gm = require('gm').subClass({ imageMagick: true});
 var util = require('../config/util.js');
-//var fs = require('fs.extra');
+var fs = require('fs.extra');
 //var multer = require('multer');
 var User = mongoose.model('User');
 
@@ -113,7 +113,7 @@ router.post('/', function(req, res, next) {
     var confirmPassword = req.body.confirmPassword;
     var thumb = './public/uploaded/thumb/';
 
-    /*
+
     fs.copy(thumb+def, thumb+photo, { replace: false }, function (err) {
       if (err) {
         // i.e. file already exists or can't write to directory
@@ -121,7 +121,7 @@ router.post('/', function(req, res, next) {
       }
       //console.log("Copied 'foo.txt' to 'bar.txt'");
     });
-    */
+    
 
     User.findOne({alias: alias} ,function (err, user) {
         if (user !== null) {
