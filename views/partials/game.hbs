@@ -5,6 +5,7 @@
     data-rule="{{rule}}" data-team="{{my_color}}" data-indizio="" data-numero="" data-scoreR="8" data-scoreB="8" data-turn="" data-sid="">
         <div><span style="color:#e0676b">Team Rosso</span>: <span id="teamr">{{html team_r}}</span></div>
         <div><span style="color:#67a7e0">Team Blu</span>: <span id="teamb">{{html team_b}}</span></div>
+        <div><input type="button" id="buttonReset" value="Reset"/></div>
         <div><p> </p></div>
         <div class="score"><p>Punteggio: <span id="scorer" style="color:#e0676b"></span> - <span id="scoreb" style="color:#67a7e0"></span></p></div>
         <div><p><form role="form" method="post" action="/match/matchStart"><input type="hidden" name="id_game" value="{{ game._id }}"><input type="submit" id="buttonStart" value="Inizia"/></form></p></div>
