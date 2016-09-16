@@ -29,9 +29,9 @@ module.exports = function (server) {
               io.sockets.connected[socket.id].emit('updateSid',socket.id);
             });
 
-            socket.on('chatMessage', function(from, msg){
+            socket.on('chatMessage', function(from, team, msg){
               //console.log("into server chatMessage by " + from);
-        	    io.emit('chatMessage', from, msg);
+        	    io.emit('chatMessage', from, team, msg);
         	  });
 
             socket.on('disconnect', function(user_id){
@@ -46,7 +46,7 @@ module.exports = function (server) {
               }
               */
               if (clients.length && clients.length>0){
-                socket.broadcast.emit('chatMessage', 'System', '<b>' + socket.handshake.query.user + '</b> si è scollegato dalla partita');
+                socket.broadcast.emit('chatMessage', 'System', '2', '<b>' + socket.handshake.query.user + '</b> si è scollegato dalla partita');
               }
               if (clients.length && clients.length==1){
                 io.sockets.connected[clients[0].id].emit('saveGame');

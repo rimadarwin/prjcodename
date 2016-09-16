@@ -14,6 +14,7 @@ function endGame(team,opposite){
   var squadra = "";
   var g = $("#game-details")
   g.attr("data-numero",numero);
+  g.attr("data-status","finished");
   var m = $('#messages2');
   if (opposite)
     squadra = (team==1)?"Rossa":"Blu";
@@ -22,8 +23,9 @@ function endGame(team,opposite){
   m.append('<li><b>Vince la squadra ' + squadra + '!</b></li>');
   $("#buttonFatto").attr("disabled",true);
   setTimeout(function(){
-    m.scrollTop(m.outerHeight()+m.offset().top);
-  }, 500);
+    //m.scrollTop(m.outerHeight()+m.offset().top);
+    m.scrollTop(10000);
+  }, 200);
 };
 
 function grid(){
@@ -73,8 +75,9 @@ function nextTeam(team){
 
   m.append(stringa);
   setTimeout(function(){
-    m.scrollTop(m.outerHeight()+m.offset().top);
-  }, 500);
+    //m.scrollTop(m.outerHeight()+m.offset().top);
+    m.scrollTop(10000);
+  }, 200);
 
   if (g.attr("data-team")==team){
     if (g.attr("data-rule")=="1"){
@@ -193,7 +196,10 @@ $( document ).ready(function() {
       $(this).closest('div.module1').find('div.body1').toggle('slow', function(){
          $(this).closest('div.module1').toggleClass('rolledup',$(this).is(':hidden'));
        });
-      $('#messages1').scrollTop($('#messages1').outerHeight()+$('#messages1').offset().top);
+       setTimeout(function(){
+         //$('#messages1').scrollTop($('#messages1').outerHeight()+$('#messages1').offset().top);
+         $('#messages1').scrollTop(10000);
+       }, 200);
     });
 
     img2 = $('div.caption2 img');
@@ -206,7 +212,10 @@ $( document ).ready(function() {
       $(this).closest('div.module2').find('div.body2').toggle('slow', function(){
             $(this).closest('div.module2').toggleClass('rolledup',$(this).is(':hidden'));
       });
-      $('#messages2').scrollTop($('#messages2').outerHeight()+$('#messages2').offset().top);
+      setTimeout(function(){
+        //$('#messages2').scrollTop($('#messages2').outerHeight()+$('#messages2').offset().top);
+        $('#messages2').scrollTop(10000);
+      }, 200);
     });
 
     /*
@@ -288,42 +297,62 @@ $( document ).ready(function() {
           socket.emit('registerGame',$("#game-details").attr('data-sid'),room);
           socket.emit('updateTeam',rule, team, name);
           socket.emit('updateReadyState', ready);
-          socket.emit('chatMessage', 'System', '<b>' + name + '</b> si è unito alla partita');
+          socket.emit('chatMessage', 'System', '2','<b>' + name + '</b> si è unito alla partita');
         }
         //console.log("id_game: "+id_game);
 
         $('#form1').on('submit', function (ev) {
             //console.log("submitfunction1");
+            var g = $("#game-details");
+            var team = g.attr("data-team");
+            //var color = (team == 0) ? '#e0676b' : '#67a7e0';
             var from = $('#user').val();
             var message = $('#m').val();
             if(message != '') {
               //console.log("emit "+message+" from "+from);
-              socket.emit('chatMessage', from, message);
+              socket.emit('chatMessage', from, team, message);
             }
             $('#m').val('').focus();
             return false;
         });
 
-        socket.on('chatMessage', function(from, msg){
+        socket.on('chatMessage', function(from, team, msg){
           //console.log("into client chatMessage");
-          var me = $('#user').val();
-          var team = $('#team').val();
+          //var me = $('#user').val();
+          //var team = $('#team').val();
+          var color = (team == 0) ? '#e0676b' : (team == 1) ? '#67a7e0' : '#000';
+          var align = (team == 1) ? 'left' : 'right';
+          /*
+          if (team=="1")
+            $(".module1").css("text-align","left");
+          else
+            $(".module1").css("text-align","right");
+            */
           //console.log(me + " vs. " + from);
           //color = (from == me) ? 'green' : (team == 0) ? '#e0676b' : '#67a7e0';
-          color = (team == 0) ? '#e0676b' : '#67a7e0';
-          if (from=='System')
-            color = '#000010'
+          //color = (team == 0) ? '#e0676b' : '#67a7e0';
+          //if (from=='System')
+            //color = '#000010'
           //var from = (from == me) ? 'Me' : from;
           var m = $('#messages1');
+          /*
           if (from=='System'){
             setTimeout(function(){
               m.append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
-              m.scrollTop(m.outerHeight()+m.offset().top);
-            }, 500);
+              //m.scrollTop(m.outerHeight()+m.offset().top);
+              m.scrollTop(10000);
+            }, 200);
           } else {
             m.append('<li><b style="color:' + color + '">' + from + '</b>: ' + msg + '</li>');
-            m.scrollTop(m.outerHeight()+m.offset().top);
+            //m.scrollTop(m.outerHeight()+m.offset().top);
+            m.scrollTop(10000);
           }
+          */
+          setTimeout(function(){
+            m.append('<li><div style="text-align:' + align + '"><b style="color:' + color + '">' + from + '</b>: ' + msg + '</div></li>');
+            //m.scrollTop(m.outerHeight()+m.offset().top);
+            m.scrollTop(10000);
+          }, 200);
         });
 
         socket.on('registerGame', function(sid,id){
@@ -423,7 +452,7 @@ $( document ).ready(function() {
           if(user != me) {
             $('#notifyUser1').text(user + ' is typing ...');
           }
-          setTimeout(function(){ $('#notifyUser1').text(''); }, 500);
+          setTimeout(function(){ $('#notifyUser1').text(''); }, 200);
         });
 
         socket.on('updateSid', function(sid){
@@ -510,8 +539,9 @@ $( document ).ready(function() {
           stringa = stringa + "</li>";
           m.append(stringa);
           setTimeout(function(){
-            m.scrollTop(m.outerHeight()+m.offset().top);
-          }, 500);
+            //m.scrollTop(m.outerHeight()+m.offset().top);
+            m.scrollTop(10000);
+          }, 200);
 
           var turn = "0-" + starter + "-0";
           g.attr("data-turn",turn);
@@ -541,8 +571,9 @@ $( document ).ready(function() {
           var m = $('#messages2');
           m.append('<li><b style="color:' + color + '">' + indizio + ' - ' + numero + ':</b> </li>');
           setTimeout(function(){
-            m.scrollTop(m.outerHeight()+m.offset().top);
-          }, 500);
+            //m.scrollTop(m.outerHeight()+m.offset().top);
+            m.scrollTop(10000);
+          }, 200);
           var turn = "1-" + team + "-"+(Number(numero)+1);
           g.attr("data-turn",turn);
         });
@@ -575,8 +606,9 @@ $( document ).ready(function() {
           stringa = stringa + "</li>";
           m.append(stringa);
           setTimeout(function(){
-            m.scrollTop(m.outerHeight()+m.offset().top);
-          }, 500);
+            //m.scrollTop(m.outerHeight()+m.offset().top);
+            m.scrollTop(10000);
+          }, 200);
 
           var turn = "1-" + team + "-"+numero;
           g.attr("data-turn",turn);
@@ -625,8 +657,9 @@ $( document ).ready(function() {
           m.append('<li><b>Vince la squadra ' + squadra + '!</b></li>');
           $("#buttonFatto").attr("disabled",true);
           setTimeout(function(){
-            m.scrollTop(m.outerHeight()+m.offset().top);
-          }, 500);
+            //m.scrollTop(m.outerHeight()+m.offset().top);
+            m.scrollTop(10000);
+          }, 200);
         });
 
         socket.on('nextTeam', function(team){
