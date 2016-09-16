@@ -69,6 +69,14 @@ hbs.registerHelper("colore", function (owner, rule){
     return "4";
 });
 
+hbs.registerHelper("webmaster", function (name){
+  console.log("name:" + name );
+  if (name == "Gargo")
+    return new hbs.SafeString("<input type='button' id='buttonReset' value='Reset'/>");
+  else
+    return new hbs.SafeString("");
+});
+
 hbs.registerHelper("buttonPartita", function (rule){
   console.log("rule:" + rule );
   if (rule == "0")
