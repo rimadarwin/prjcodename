@@ -104,24 +104,25 @@ router.post('/', function(req, res, next) {
     */
     //var photo = req.body.photo;
     //var photo = req.file.originalname;
-    var def = "default.jpg";
+    var def = "default.png";
     var name = req.body.name;
     var alias = req.body.alias;
-    var photo = alias + ".jpg";
+    var photo = alias + "0.png";
     console.log(photo);
     var password = req.body.password;
     var confirmPassword = req.body.confirmPassword;
     var thumb = './public/uploaded/thumb/';
+    var files = './public/uploaded/files/';
 
 
-    fs.copy(thumb+def, thumb+photo, { replace: false }, function (err) {
+    fs.copy(files+def, thumb+photo, { replace: false }, function (err) {
       if (err) {
         // i.e. file already exists or can't write to directory
         throw err;
       }
       //console.log("Copied 'foo.txt' to 'bar.txt'");
     });
-    
+
 
     User.findOne({alias: alias} ,function (err, user) {
         if (user !== null) {

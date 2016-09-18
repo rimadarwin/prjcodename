@@ -98,9 +98,13 @@ exports.updateTeam= function(users) {
 		var hasRedMaster = false;
 		var hasBlueAgent = false;
 		var hasRedAgent = false;
+		var thumb = '../uploaded/thumb/';
+		var width = '50px';
+
 
 		for (i=0;i<users.length;i++){
 			var user = users[i];
+			var img = '<img id="thumb_' + user.alias + '" src="' + thumb + user.alias + user.rule + '.png" width="' + width + '"> ';
 			//console.log(user);
 			//console.log(user.rule);
 			//console.log(user.color);
@@ -110,17 +114,17 @@ exports.updateTeam= function(users) {
 					//console.log("1");
 					hasRedMaster = true;
 					if (team_r == ''){
-						team_r = '<b>' + user.alias + '</b>';
+						team_r = img + '<b>' + user.alias + '</b>';
 					} else {
-						team_r = team_r + ', <b>' + user.alias + '</b>';
+						team_r = team_r + ', ' + img + '<b>' + user.alias + '</b>';
 					}
 				} else {
 					//console.log("2");
 					hasBlueMaster = true;
 					if (team_b == ''){
-						team_b = '<b>' + user.alias + '</b>';
+						team_b = img + '<b>' + user.alias + '</b>';
 					} else {
-						team_b = team_b + ', <b>' + user.alias + '</b>';
+						team_b = team_b + ', ' + img + '<b>' + user.alias + '</b>';
 					}
 				}
 			} else {
@@ -129,17 +133,17 @@ exports.updateTeam= function(users) {
 					hasRedAgent = true;
 					//console.log("4");
 					if (team_r == ''){
-						team_r = user.alias ;
+						team_r = img + user.alias ;
 					} else {
-						team_r = team_r + ', ' + user.alias;
+						team_r = team_r + ', ' + img + user.alias;
 					}
 				} else {
 					hasBlueAgent = true;
 					//console.log("5");
 					if (team_b == ''){
-						team_b = user.alias;
+						team_b = img + user.alias;
 					} else {
-						team_b = team_b + ', ' + user.alias;
+						team_b = team_b + ', ' + img + user.alias;
 					}
 				}
 			}

@@ -3,11 +3,11 @@
     <div id="game-details" class="col-md-4 col-md-offset-1" data-id="{{game._id}}" data-user="{{user.alias}}"
     data-emit="{{emit}}" data-status="{{game.status}}" data-ready="{{ready}}" data-starter="{{game.starter}}" data-creator="{{game.alias_creator}}"
     data-rule="{{rule}}" data-team="{{my_color}}" data-indizio="" data-numero="" data-scoreR="8" data-scoreB="8" data-turn="" data-sid="">
-        <div><span style="color:#e0676b">Team Rosso</span>: <span id="teamr">{{html team_r}}</span></div>
-        <div><span style="color:#67a7e0">Team Blu</span>: <span id="teamb">{{html team_b}}</span></div>
-        <div>{{ webmaster user.alias }}</div> 
+        <div style="width:500px; height:70px;"><span style="color:#e0676b">Team Rosso</span>: <span id="teamr"> {{html team_r}}</span></div>
+        <div style="width:500px; height:70px;"><span style="color:#67a7e0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Team Blu</span>: <span id="teamb"> {{html team_b}}</span></div>
+        <div>{{ webmaster user.alias }}</div>
         <div><p> </p></div>
-        <div class="score"><p>Punteggio: <span id="scorer" style="color:#e0676b"></span> - <span id="scoreb" style="color:#67a7e0"></span></p></div>
+        <div class="score"><p>Da indovinare: <span id="scorer" style="color:#e0676b"></span> - <span id="scoreb" style="color:#67a7e0"></span> parole</p></div>
         <div><p><form role="form" method="post" action="/match/matchStart"><input type="hidden" name="id_game" value="{{ game._id }}"><input type="submit" id="buttonStart" value="Inizia"/></form></p></div>
         <div><p> </p></div>
         <div>
