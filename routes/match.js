@@ -47,10 +47,11 @@ router.post('/matchNew', function(req, res, next) {
     var rule = req.body.rule;
 
     Game.findOne({name: name},
+      {$or:[{status:'waiting'},{status:'started'}]},
     function (err, game) {
         if (game !== null) {
             //req.flash('groupNewStatus', false);
-            req.flash('errorMessage', '0Esiste già un gioco con questo nome: ' + name);
+            req.flash('errorMessage', '0Esiste già un gioco attivo con questo nome: ' + name);
             res.redirect('/match/matchNew');
         } else { // no game found
             /* inserire logica di creazione tabellone */
